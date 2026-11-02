@@ -26,19 +26,15 @@ func newServeCommand() *cobra.Command {
 	return stub("serve", "Run the coordinator")
 }
 
-func newAgentCommand() *cobra.Command {
+func newAgentCommand(e env) *cobra.Command {
 	install := stub("install", "Install the agent as a native system service and enroll it")
-	install.Flags().String("role", "", "agent role: host or guest")
 	addEnrollFlags(install, "enroll")
 
-	enroll := stub("enroll", "Enroll the agent with the coordinator's CA")
-	addEnrollFlags(enroll, "server")
-
 	return group("agent", "Run and manage a host or guest agent",
-		stub("run", "Run the agent in the foreground"),
+		newAgentRunCommand(),
 		install,
 		stub("uninstall", "Remove the agent's system service"),
-		enroll,
+		newAgentEnrollCommand(e),
 		stub("status", "Print service state, health checks and certificate expiry"),
 		group("policy", "Manage the host agent's local write policy",
 			stub("sync", "Show the proposed policy's diff and activate it after confirmation"),
@@ -49,9 +45,11 @@ func newAgentCommand() *cobra.Command {
 // addEnrollFlags adds the flags of enrollment (DESIGN §4.6); urlFlag names
 // the enrollment URL flag.
 func addEnrollFlags(cmd *cobra.Command, urlFlag string) {
-	cmd.Flags().String(urlFlag, "", "enrollment URL")
+	cmd.Flags().String(urlFlag, "", "enrollment URL, e.g. https://hvmc.example.com/v1/enroll")
 	cmd.Flags().String("token", "", "single-use bootstrap token")
 	cmd.Flags().String("ca-sha256", "", "SHA-256 fingerprint of the hvmc CA certificate")
+	cmd.Flags().String("agent", "", "agent name in HostConfig: the host agent's name or the VM name")
+	cmd.Flags().String("role", "", "agent role: host or guest")
 }
 
 func newCheckCommand() *cobra.Command {

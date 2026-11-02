@@ -23,15 +23,20 @@ var testNow = time.Date(2026, 3, 4, 5, 6, 7, 0, time.UTC)
 // runCLI runs hvmc with args at testNow.
 func runCLI(t *testing.T, args ...string) (code int, stdout, stderr string) {
 	t.Helper()
+	return runCLIEnv(t, env{now: func() time.Time { return testNow }}, args...)
+}
+
+func runCLIEnv(t *testing.T, e env, args ...string) (code int, stdout, stderr string) {
+	t.Helper()
 	var out, errOut bytes.Buffer
-	code = execute(env{now: func() time.Time { return testNow }}, args, &out, &errOut)
+	code = execute(e, args, &out, &errOut)
 	return code, out.String(), errOut.String()
 }
 
 func TestStubs(t *testing.T) {
 	for _, path := range []string{
 		"serve",
-		"agent run", "agent install", "agent uninstall", "agent enroll", "agent status", "agent policy sync",
+		"agent install", "agent uninstall", "agent status", "agent policy sync",
 		"check",
 		"test run", "test list", "test logs",
 		"token create",

@@ -8,6 +8,7 @@ package cli
 
 import (
 	"context"
+	"crypto/x509"
 	"errors"
 	"fmt"
 	"io"
@@ -44,6 +45,9 @@ func usageErrorf(format string, args ...any) error {
 type env struct {
 	// now is the wall clock.
 	now func() time.Time
+	// rootCAs verify TLS endpoints hvmc connects to (hvmc agent enroll);
+	// nil means the system roots.
+	rootCAs *x509.CertPool
 }
 
 func defaultEnv() env { return env{now: time.Now} }
@@ -91,7 +95,7 @@ func newRootCommand(e env) *cobra.Command {
 	root.AddCommand(
 		newVersionCommand(),
 		newServeCommand(),
-		newAgentCommand(),
+		newAgentCommand(e),
 		newPlanCommand(e),
 		newCheckCommand(),
 		newTestCommand(),
