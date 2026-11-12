@@ -22,7 +22,7 @@ jobs:
       id-token: write # Log in to OpenBao for Prompt Guard, and sign in to the Claude GitHub App
       issues: write # Comment on issues, and escalate a flag
       pull-requests: write # Comment on and open pull requests, and escalate a flag
-    uses: actions-fyi/shared-workflows/.github/workflows/_claude.yml@v0.15.0
+    uses: actions-fyi/shared-workflows/.github/workflows/_claude.yml@v0.15.1
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
       PROMPT_GUARD_CLIENT_ID: ${{ secrets.PROMPT_GUARD_CLIENT_ID }}

@@ -26,4 +26,4 @@ jobs:
       contents: read # Read the repository's languages and check it out
       security-events: write # Upload the results to code scanning
       actions: read # Let CodeQL read the workflow run
-    uses: actions-fyi/shared-workflows/.github/workflows/_codeql.yml@v0.15.0
+    uses: actions-fyi/shared-workflows/.github/workflows/_codeql.yml@v0.15.1

@@ -14,4 +14,4 @@ jobs:
     permissions:
       contents: read # Read the Renovate configs
       id-token: write # Get the Octo STS token for the fix commit on pull requests
-    uses: actions-fyi/shared-workflows/.github/workflows/_renovate.yml@v0.15.0
+    uses: actions-fyi/shared-workflows/.github/workflows/_renovate.yml@v0.15.1

@@ -18,7 +18,7 @@ jobs:
       id-token: write # Log in to OpenBao for Prompt Guard
       issues: write # Read the repository's labels, label the pull request, and escalate a flag
       pull-requests: write # Read the pull request; apply the title, labels and description
-    uses: actions-fyi/shared-workflows/.github/workflows/_pr-metadata.yml@v0.15.0
+    uses: actions-fyi/shared-workflows/.github/workflows/_pr-metadata.yml@v0.15.1
     secrets:
       CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
       PROMPT_GUARD_CLIENT_ID: ${{ secrets.PROMPT_GUARD_CLIENT_ID }}
