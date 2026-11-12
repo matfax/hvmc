@@ -5,22 +5,14 @@ version: 'v0.0.3'
 workflows:
     '.github/workflows/actions-lock-explain.yml': []
     '.github/workflows/actions-lock-push.yml': []
-    '.github/workflows/audit.yml':
-        - 'actions/checkout@v7.0.1'
-        - 'step-security/harden-runner@v2.22.3'
-        - 'zizmorcore/zizmor-action@v0.8.0'
     '.github/workflows/auto-label.yml': []
     '.github/workflows/ci.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-go@v7.0.0'
-        - 'step-security/harden-runner@v2.22.3'
+        - 'step-security/harden-runner@v2.22.4'
     '.github/workflows/claude.yml': []
     '.github/workflows/codeql.yml': []
     '.github/workflows/label-sync.yml': []
-    '.github/workflows/lint.yml':
-        - 'actions/checkout@v7.0.1'
-        - 'kjanat/actionlint@v1.17.0'
-        - 'step-security/harden-runner@v2.22.3'
     '.github/workflows/pr-metadata.yml': []
     '.github/workflows/renovate.yml': []
     '.github/workflows/zizmor.yml': []
@@ -35,25 +27,8 @@ dependencies:
         commit: 'sha1-b7ad1dad31e06c5925ef5d2fc7ad053ef454303e'
         owner_id: 44036562
         repo_id: 192624594
-    'github/codeql-action@24c54180a607b1449ed407dd24f251e4e9147c8d':
-        ref: 'v4.38.3'
-        commit: 'sha1-24c54180a607b1449ed407dd24f251e4e9147c8d'
-        owner_id: 9919
-        repo_id: 259445878
-    'kjanat/actionlint@v1.17.0':
-        ref: 'v1.17.0'
-        commit: 'sha1-08bb2c4f0d039744455b87aef1c647fb8b66d37b'
-        owner_id: 6353477
-        repo_id: 1326162482
-    'step-security/harden-runner@v2.22.3':
-        ref: 'v2.22.3'
-        commit: 'sha1-46b06cea07f9e64621fdf066ba77ac6915163d43'
+    'step-security/harden-runner@v2.22.4':
+        ref: 'v2.22.4'
+        commit: 'sha1-1d88384fd173af6ecb012dfd0264a306b711241a'
         owner_id: 88700172
         repo_id: 422287306
-    'zizmorcore/zizmor-action@v0.8.0':
-        ref: 'v0.8.0'
-        commit: 'sha1-53290badfa369cb0bf7ad16342cb62c2fa47ac7b'
-        owner_id: 210636713
-        repo_id: 985558803
-        uses:
-            - 'github/codeql-action@24c54180a607b1449ed407dd24f251e4e9147c8d'
